@@ -3,6 +3,10 @@ node-discover
 
 Automatically discover your nodejs instances using UDP broadcast with support for automatic single master
 
+Version 0.0.1 
+
+Probably has bugs.
+
 
 Why?
 ----
@@ -112,19 +116,42 @@ Methods
 Events
 ------
 
-* promotion
-
-* demotion
-
-* added
-
-* removed
-
-* master
+Each event is passed the `Node Object` for which the event is occuring.
 
 
+* promotion - triggered when the node has been promoted to a master.
+
+	* Could happen by calling the promote() method
+
+	* Could happen by the current master instance being demoted and this instance automatically being promoted
+
+	* Could happen by the current master instance dying and this instance automatically being promoted
+
+* demotion - triggered when the node is no longer a master.
+
+	* Could happen by calling the demote() method
+
+	* Could happen by another node promoting itself to master
+
+* added - triggered when a new node is discovered
+
+* removed - triggered when a new node is not heard from within `nodeTimeout`
+
+* master - triggered when a new master has been selected
 
 
+Node Object
+-----------
+
+		{ 
+			isMaster: true,
+			isMasterEligible: true,
+			advertisement: null,
+			lastSeen: 1317323922551,
+			address: '10.0.0.1',
+			port: 12345,
+			id: '31d39c91d4dfd7cdaa56738de8240bc4' 
+		}
 
 
 LICENSE
