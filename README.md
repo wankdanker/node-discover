@@ -1,5 +1,5 @@
 node-discover
--------------
+=============
 
 Automatically discover your nodejs instances using UDP broadcast with support for automatic single master
 
