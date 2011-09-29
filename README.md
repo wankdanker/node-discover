@@ -3,7 +3,7 @@ node-discover
 
 Automatically discover your nodejs instances using UDP broadcast with support for automatic single master
 
-Version 0.0.1 
+Version 0.0.3 
 
 Probably has bugs.
 
