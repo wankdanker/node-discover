@@ -72,16 +72,16 @@ API
 Constructor
 -----------
 
-new Discover({
-	helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
-	checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
-	nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
-	masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
-	address		: Address to bind to; Default: '0.0.0.0'
-	port		: Port to bind to and broadcast to: Default: 12345
-	destination	: Destination ip address; Default: '255.255.255.255'
-	key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
-});
+		new Discover({
+			helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
+			checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
+			nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
+			masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
+			address		: Address to bind to; Default: '0.0.0.0'
+			port		: Port to bind to and broadcast to: Default: 12345
+			destination	: Destination ip address; Default: '255.255.255.255'
+			key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
+		});
 
 Attributes
 ----------
