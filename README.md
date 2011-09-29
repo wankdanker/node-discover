@@ -86,28 +86,42 @@ Constructor
 Attributes
 ----------
 
-nodes
+* nodes
+
 
 Methods
 -------
 
-promote
-demote
-join --not implemented
-leave --not implemented
-advertise
-start
-stop
-eachNode(fn)
+* promote
+
+* demote
+
+* join --not implemented
+
+* leave --not implemented
+
+* advertise
+
+* start
+
+* stop
+
+* eachNode(fn)
+
   
 Events
 ------
 
-promotion
-demotion
-added
-removed
-master
+* promotion
+
+* demotion
+
+* added
+
+* removed
+
+* master
+
 
 
 
