@@ -20,7 +20,7 @@ of processes? This module also has automatic master process selection.
 Example
 -------
 
-		var Discover = require('../lib/discover.js');
+		var Discover = require('node-discover');
 
 		var d = new Discover();
 
@@ -69,12 +69,25 @@ Example
 			console.log("A new master is in control");
 		});
 
+Installing
+----------
+
+npm
+===
+
+		npm install node-discover
+
+git
+===
+
+		git clone git://github.com/wankdanker/node-discover.git
+
 
 API
 ---
 
 Constructor
------------
+===========
 
 		new Discover({
 			helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
@@ -88,13 +101,13 @@ Constructor
 		});
 
 Attributes
-----------
+===========
 
 * nodes
 
 
 Methods
--------
+===========
 
 * promote
 
@@ -114,7 +127,7 @@ Methods
 
   
 Events
-------
+===========
 
 Each event is passed the `Node Object` for which the event is occuring.
 
@@ -141,7 +154,7 @@ Each event is passed the `Node Object` for which the event is occuring.
 
 
 Node Object
------------
+===========
 
 		{ 
 			isMaster: true,
