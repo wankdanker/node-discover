@@ -9,7 +9,7 @@ Probably has bugs.
 
 
 Why?
-----
+====
 
 So, you have a whole bunch of node processes running but you have no way within each process to
 determine where the other processes are or what they can do. This module aims to make discovery of new
@@ -18,7 +18,7 @@ of processes? This module also has automatic master process selection.
 
 
 Example
--------
+=======
 
 		var Discover = require('node-discover');
 
@@ -70,24 +70,24 @@ Example
 		});
 
 Installing
-----------
+==========
 
 npm
-===
+---
 
 		npm install node-discover
 
 git
-===
+---
 
 		git clone git://github.com/wankdanker/node-discover.git
 
 
 API
----
+===
 
 Constructor
-===========
+-----------
 
 		new Discover({
 			helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
@@ -101,13 +101,13 @@ Constructor
 		});
 
 Attributes
-===========
+-----------
 
 * nodes
 
 
 Methods
-===========
+-----------
 
 * promote
 
@@ -127,7 +127,7 @@ Methods
 
   
 Events
-===========
+-----------
 
 Each event is passed the `Node Object` for which the event is occuring.
 
@@ -154,7 +154,7 @@ Each event is passed the `Node Object` for which the event is occuring.
 
 
 Node Object
-===========
+-----------
 
 		{ 
 			isMaster: true,
@@ -168,7 +168,7 @@ Node Object
 
 
 LICENSE
--------
+=======
 
 (MIT License)
 
