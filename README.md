@@ -1,7 +1,8 @@
 node-discover
 =============
 
-Automatically discover your nodejs instances using UDP broadcast with support for automatic single master
+Automatically discover your nodejs instances using UDP broadcast with built in support for automatic single master, 
+service advertising, channel messages.
 
 Version 0.0.3 
 
@@ -266,6 +267,11 @@ Node Object
 			port: 12345,
 			id: '31d39c91d4dfd7cdaa56738de8240bc4' 
 		}
+
+TODO
+====
+
+I have not tested large packets. The current version does not handle recombining split messages.
 
 
 LICENSE
