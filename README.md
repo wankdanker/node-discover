@@ -148,7 +148,7 @@ Methods
 			//could not join that channel; probably because it is reserved
 		}
 	
-	!!! Reserved channels
+	Reserved channels
 	* promotion
 	* demotion
 	* added
