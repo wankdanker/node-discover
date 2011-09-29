@@ -109,21 +109,122 @@ Attributes
 Methods
 -----------
 
-* promote
+* promote() - promote the instance to master.
 
-* demote
+	This causes the old master to demote.
+	
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		d.promote();
 
-* join --not implemented
+* demote  - demote the instance from being a master. Optionally pass true to demote to specify that this
+	node should not automatically become master again.
 
-* leave --not implemented
+	This causes another node to become master
 
-* advertise
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		d.demote(); //this node is still eligible to become a master node.
+		
+		//or
+		
+		d.demote(true); //this node is no longer eligible to become a master node.
 
-* start
+* join - join a channel on which to receive messages/objects
+	
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		//Pass the channel and the callback function for handling received data from that channel
+		var success = d.join("config-updates", function (data) {
+			if (data.redisMaster) {
+				//connect to the new redis master
+			}
+		});
+		
+		if (!success) {
+			//could not join that channel; probably because it is reserved
+		}
+	
+	!! Reserved channels
+	* promotion
+	* demotion
+	* added
+	* removed
+	* master
+	* hello
 
-* stop
+* leave - leave a channel
 
-* eachNode(fn)
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		//Pass the channel and the callback function for handling received data from that channel
+		var success = d.leave("config-updates");
+		
+		if (!success) {
+			//could leave channel; who cares?
+		}
+
+* send - send a message/object on a specific channel
+
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		var success = d.send("config-updates", { redisMaster : "10.0.1.4" });
+		
+		if (!succes) {
+			//could not send on that channel; probably because it is reserved
+		}
+
+* advertise - advertise an object or message with each hello packet; this is completely arbitrary. make this
+	object/message whatever you applies to your application that you want your nodes to know about the other
+	nodes.
+
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		d.advertise({
+			localServices : [
+				{ type : 'http', port : '9911', description : 'my awesome http server' },
+				{ type : 'smtp', port : '25', description : 'smtp server' },
+			]
+		});
+
+		//or
+		
+		d.advertise("i love nodejs");
+		
+		//or
+		
+		d.advertise({ something : "something" });
+		
+* start - start broadcasting hello packets and checking for missing nodes (start is called automatically in the constructor)
+
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		d.start();
+
+* stop - stop broadcasting hello packets and checking for missing nodes
+
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		d.stop();
+
+* eachNode(fn) - for each node execute fn, passing it the node
+
+		var Discover = require('node-discover');
+		var d = new Discover();
+		
+		d.eachNode(function (node) {
+			if (node.advertisement == "i love nodejs") {
+				console.log("nodejs loves this node too");
+			}
+		});
 
   
 Events
