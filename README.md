@@ -73,13 +73,11 @@ Example
 Installing
 ==========
 
-npm
----
+### npm
 
 		npm install node-discover
 
-git
----
+### git
 
 		git clone git://github.com/wankdanker/node-discover.git
 
@@ -110,19 +108,21 @@ Attributes
 Methods
 -----------
 
-* promote() - promote the instance to master.
+### promote()
+Promote the instance to master.
 
-	This causes the old master to demote.
+This causes the old master to demote.
 	
 		var Discover = require('node-discover');
 		var d = new Discover();
 		
 		d.promote();
 
-* demote  - demote the instance from being a master. Optionally pass true to demote to specify that this
-	node should not automatically become master again.
+### demote(permanent=false)
+Demote the instance from being a master. Optionally pass true to demote to specify that this
+node should not automatically become master again.
 
-	This causes another node to become master
+This causes another node to become master
 
 		var Discover = require('node-discover');
 		var d = new Discover();
@@ -133,7 +133,8 @@ Methods
 		
 		d.demote(true); //this node is no longer eligible to become a master node.
 
-* join - join a channel on which to receive messages/objects
+### join(channel, messageCallback)
+Join a channel on which to receive messages/objects
 	
 		var Discover = require('node-discover');
 		var d = new Discover();
@@ -149,27 +150,29 @@ Methods
 			//could not join that channel; probably because it is reserved
 		}
 	
-	Reserved channels
-	* promotion
-	* demotion
-	* added
-	* removed
-	* master
-	* hello
+#### Reserved channels
+* promotion
+* demotion
+* added
+* removed
+* master
+* hello
 
-* leave - leave a channel
+### leave(channel)
+Leave a channel
 
 		var Discover = require('node-discover');
 		var d = new Discover();
 		
-		//Pass the channel and the callback function for handling received data from that channel
+		//Pass the channel which we want to leave
 		var success = d.leave("config-updates");
 		
 		if (!success) {
 			//could leave channel; who cares?
 		}
 
-* send - send a message/object on a specific channel
+### send(channel, objectToSend)
+Send a message/object on a specific channel
 
 		var Discover = require('node-discover');
 		var d = new Discover();
@@ -180,9 +183,10 @@ Methods
 			//could not send on that channel; probably because it is reserved
 		}
 
-* advertise - advertise an object or message with each hello packet; this is completely arbitrary. make this
-	object/message whatever you applies to your application that you want your nodes to know about the other
-	nodes.
+### advertise(objectToAdvertise)
+Advertise an object or message with each hello packet; this is completely arbitrary. make this
+object/message whatever you applies to your application that you want your nodes to know about the other
+nodes.
 
 		var Discover = require('node-discover');
 		var d = new Discover();
@@ -202,21 +206,24 @@ Methods
 		
 		d.advertise({ something : "something" });
 		
-* start - start broadcasting hello packets and checking for missing nodes (start is called automatically in the constructor)
+### start()
+Start broadcasting hello packets and checking for missing nodes (start is called automatically in the constructor)
 
 		var Discover = require('node-discover');
 		var d = new Discover();
 		
 		d.start();
 
-* stop - stop broadcasting hello packets and checking for missing nodes
+### stop()
+Stop broadcasting hello packets and checking for missing nodes
 
 		var Discover = require('node-discover');
 		var d = new Discover();
 		
 		d.stop();
 
-* eachNode(fn) - for each node execute fn, passing it the node
+### eachNode(fn) 
+For each node execute fn, passing fn the node fn(node)
 
 		var Discover = require('node-discover');
 		var d = new Discover();
@@ -234,25 +241,27 @@ Events
 Each event is passed the `Node Object` for which the event is occuring.
 
 
-* promotion - triggered when the node has been promoted to a master.
+### promotion 
+Triggered when the node has been promoted to a master.
 
-	* Could happen by calling the promote() method
+* Could happen by calling the promote() method
+* Could happen by the current master instance being demoted and this instance automatically being promoted
+* Could happen by the current master instance dying and this instance automatically being promoted
 
-	* Could happen by the current master instance being demoted and this instance automatically being promoted
+### demotion 
+Triggered when the node is no longer a master.
 
-	* Could happen by the current master instance dying and this instance automatically being promoted
+* Could happen by calling the demote() method
+* Could happen by another node promoting itself to master
 
-* demotion - triggered when the node is no longer a master.
+### added 
+Triggered when a new node is discovered
 
-	* Could happen by calling the demote() method
+### removed 
+Triggered when a new node is not heard from within `nodeTimeout`
 
-	* Could happen by another node promoting itself to master
-
-* added - triggered when a new node is discovered
-
-* removed - triggered when a new node is not heard from within `nodeTimeout`
-
-* master - triggered when a new master has been selected
+### master 
+Triggered when a new master has been selected
 
 
 Node Object
