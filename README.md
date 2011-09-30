@@ -1,9 +1,9 @@
 node-discover
 =============
 
-Automatic and decentralized discovery and monitoring of nodejs instances with built in support for a single master process, service advertising and channel messaging.
+Automatic and decentralized discovery and monitoring of nodejs instances with built in support for a variable number of master processes, service advertising and channel messaging.
 
-Version 0.0.3 
+Version 0.0.4 
 
 Probably has bugs.
 
@@ -96,6 +96,7 @@ Constructor
 			port		: Port to bind to and broadcast to: Default: 12345
 			destination	: Destination ip address; Default: '255.255.255.255'
 			key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
+			mastersRequired	: The count of master processes that should always be available
 		});
 
 Attributes
