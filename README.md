@@ -1,8 +1,7 @@
 node-discover
 =============
 
-Automatically discover your nodejs instances using UDP broadcast with built in support for automatic single master, 
-service advertising, channel messages.
+Automatic and decentralized discovery and monitoring of nodejs instances with built in support for a single master process, service advertising and channel messaging.
 
 Version 0.0.3 
 
