@@ -23,65 +23,65 @@ Example
 Be sure to look in the examples folder, especially at the [distributed event emitter](https://github.com/wankdanker/node-discover/blob/master/examples/deventemitter.js)
 
 
-		var Discover = require('node-discover');
+	var Discover = require('node-discover');
 
-		var d = new Discover();
+	var d = new Discover();
 
-		d.on("promotion", function () {
-			/* 
-			 * Launch things this master process should do.
-			 * 
-			 * For example:
-			 *	- Monitior your redis servers and handle failover by issuing slaveof commands then notify
-			 *	  other node instances to use the new master
-			 *	- Make sure there are a certain number of nodes in the cluster and launch new ones if there
-			 *	  are not enough
-			 *	- whatever
-			 * 
-			 */
-			 
-			console.log("I was promoted to a master.");
-		});
+	d.on("promotion", function () {
+		/* 
+		 * Launch things this master process should do.
+		 * 
+		 * For example:
+		 *	- Monitior your redis servers and handle failover by issuing slaveof commands then notify
+		 *	  other node instances to use the new master
+		 *	- Make sure there are a certain number of nodes in the cluster and launch new ones if there
+		 *	  are not enough
+		 *	- whatever
+		 * 
+		 */
+		 
+		console.log("I was promoted to a master.");
+	});
 
-		d.on("demotion", function () {
-			/*
-			 * End all master specific functions or whatever you might like. 
-			 *
-			 */
-			
-			console.log("I was demoted from being a master.");
-		});
+	d.on("demotion", function () {
+		/*
+		 * End all master specific functions or whatever you might like. 
+		 *
+		 */
+		
+		console.log("I was demoted from being a master.");
+	});
 
-		d.on("added", function (obj) {
-			console.log("A new node has been added.");
-		});
+	d.on("added", function (obj) {
+		console.log("A new node has been added.");
+	});
 
-		d.on("removed", function (obj) {
-			console.log("A node has been removed.");
-		});
+	d.on("removed", function (obj) {
+		console.log("A node has been removed.");
+	});
 
-		d.on("master", function (obj) {
-			/*
-			 * A new master process has been selected
-			 * 
-			 * Things we might want to do:
-			 * 	- Review what the new master is advertising use its services
-			 *	- Kill all connections to the old master
-			 */
-			 
-			console.log("A new master is in control");
-		});
+	d.on("master", function (obj) {
+		/*
+		 * A new master process has been selected
+		 * 
+		 * Things we might want to do:
+		 * 	- Review what the new master is advertising use its services
+		 *	- Kill all connections to the old master
+		 */
+		 
+		console.log("A new master is in control");
+	});
 
 Installing
 ==========
 
 ### npm
 
-		npm install node-discover
+	npm install node-discover
 
 ### git
 
-		git clone git://github.com/wankdanker/node-discover.git
+	git clone git://github.com/wankdanker/node-discover.git
 
 
 API
@@ -90,18 +90,18 @@ API
 Constructor
 -----------
 
-		new Discover({
-			helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
-			checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
-			nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
-			masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
-			address		: Address to bind to; Default: '0.0.0.0'
-			port		: Port to bind to and broadcast to: Default: 12345
-			destination	: Destination ip address; Default: '255.255.255.255'
-			key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
-			mastersRequired	: The count of master processes that should always be available,
-			weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Math.random()
-		});
+	new Discover({
+		helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
+		checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
+		nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
+		masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
+		address		: Address to bind to; Default: '0.0.0.0'
+		port		: Port to bind to and broadcast to: Default: 12345
+		destination	: Destination ip address; Default: '255.255.255.255'
+		key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
+		mastersRequired	: The count of master processes that should always be available,
+		weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Math.random()
+	});
 
 Attributes
 -----------
@@ -117,10 +117,10 @@ Promote the instance to master.
 
 This causes the old master to demote.
 	
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		d.promote();
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	d.promote();
 
 ### demote(permanent=false)
 Demote the instance from being a master. Optionally pass true to demote to specify that this
@@ -128,31 +128,31 @@ node should not automatically become master again.
 
 This causes another node to become master
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		d.demote(); //this node is still eligible to become a master node.
-		
-		//or
-		
-		d.demote(true); //this node is no longer eligible to become a master node.
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	d.demote(); //this node is still eligible to become a master node.
+	
+	//or
+	
+	d.demote(true); //this node is no longer eligible to become a master node.
 
 ### join(channel, messageCallback)
 Join a channel on which to receive messages/objects
 	
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		//Pass the channel and the callback function for handling received data from that channel
-		var success = d.join("config-updates", function (data) {
-			if (data.redisMaster) {
-				//connect to the new redis master
-			}
-		});
-		
-		if (!success) {
-			//could not join that channel; probably because it is reserved
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	//Pass the channel and the callback function for handling received data from that channel
+	var success = d.join("config-updates", function (data) {
+		if (data.redisMaster) {
+			//connect to the new redis master
 		}
+	});
+	
+	if (!success) {
+		//could not join that channel; probably because it is reserved
+	}
 	
 #### Reserved channels
 * promotion
@@ -165,78 +165,78 @@ Join a channel on which to receive messages/objects
 ### leave(channel)
 Leave a channel
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		//Pass the channel which we want to leave
-		var success = d.leave("config-updates");
-		
-		if (!success) {
-			//could leave channel; who cares?
-		}
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	//Pass the channel which we want to leave
+	var success = d.leave("config-updates");
+	
+	if (!success) {
+		//could leave channel; who cares?
+	}
 
 ### send(channel, objectToSend)
 Send a message/object on a specific channel
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		var success = d.send("config-updates", { redisMaster : "10.0.1.4" });
-		
-		if (!succes) {
-			//could not send on that channel; probably because it is reserved
-		}
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	var success = d.send("config-updates", { redisMaster : "10.0.1.4" });
+	
+	if (!succes) {
+		//could not send on that channel; probably because it is reserved
+	}
 
 ### advertise(objectToAdvertise)
 Advertise an object or message with each hello packet; this is completely arbitrary. make this
 object/message whatever you applies to your application that you want your nodes to know about the other
 nodes.
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		d.advertise({
-			localServices : [
-				{ type : 'http', port : '9911', description : 'my awesome http server' },
-				{ type : 'smtp', port : '25', description : 'smtp server' },
-			]
-		});
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	d.advertise({
+		localServices : [
+			{ type : 'http', port : '9911', description : 'my awesome http server' },
+			{ type : 'smtp', port : '25', description : 'smtp server' },
+		]
+	});
 
-		//or
-		
-		d.advertise("i love nodejs");
-		
-		//or
-		
-		d.advertise({ something : "something" });
+	//or
+	
+	d.advertise("i love nodejs");
+	
+	//or
+	
+	d.advertise({ something : "something" });
 		
 ### start()
 Start broadcasting hello packets and checking for missing nodes (start is called automatically in the constructor)
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		d.start();
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	d.start();
 
 ### stop()
 Stop broadcasting hello packets and checking for missing nodes
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		d.stop();
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	d.stop();
 
 ### eachNode(fn) 
 For each node execute fn, passing fn the node fn(node)
 
-		var Discover = require('node-discover');
-		var d = new Discover();
-		
-		d.eachNode(function (node) {
-			if (node.advertisement == "i love nodejs") {
-				console.log("nodejs loves this node too");
-			}
-		});
+	var Discover = require('node-discover');
+	var d = new Discover();
+	
+	d.eachNode(function (node) {
+		if (node.advertisement == "i love nodejs") {
+			console.log("nodejs loves this node too");
+		}
+	});
 
   
 Events
@@ -271,15 +271,15 @@ Triggered when a new master has been selected
 Node Object
 -----------
 
-		{ 
-			isMaster: true,
-			isMasterEligible: true,
-			advertisement: null,
-			lastSeen: 1317323922551,
-			address: '10.0.0.1',
-			port: 12345,
-			id: '31d39c91d4dfd7cdaa56738de8240bc4' 
-		}
+	{ 
+		isMaster: true,
+		isMasterEligible: true,
+		advertisement: null,
+		lastSeen: 1317323922551,
+		address: '10.0.0.1',
+		port: 12345,
+		id: '31d39c91d4dfd7cdaa56738de8240bc4' 
+	}
 
 TODO
 ====
