@@ -20,6 +20,9 @@ of processes? This module also has automatic master process selection.
 Example
 =======
 
+Be sure to look in the examples folder, especially at the [distributed event emitter](https://github.com/wankdanker/node-discover/blob/master/examples/deventemitter.js)
+
+
 		var Discover = require('node-discover');
 
 		var d = new Discover();
