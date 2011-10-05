@@ -7,6 +7,8 @@
  * Filter events in the master so that we don't waste time/bandwidth passing messages
  * to nodes who do not have a listener for that event
  * 
+ * Buffer events when there is no client to send to?
+ * 
  * ### Constructor
  * 
  * new dEventEmitter({
@@ -51,9 +53,9 @@ var dEventEmitter = module.exports = function (options) {
 	self.remotes = [];
 	
 	//Set some defaults
-	options.broadcastPort 	= options.broadcastPort || 5554
+	options.broadcastPort 	= options.broadcastPort || 5553
 	options.address 	= options.address 	|| '0.0.0.0';
-	options.port 		= options.port 		|| 5555;
+	options.port 		= options.port 		|| 5554;
 	options.delimiter 	= options.delimiter 	|| "::";
 	options.wildcard 	= options.wildcard 	|| true;
 	options.key		= options.key		|| "dEventEmitter";
@@ -72,7 +74,7 @@ var dEventEmitter = module.exports = function (options) {
 	});
 	
 	//Define what to do when this process becomes the master for the cluster
-	disc.on("promotion", function () {
+	disc.on("promotion", function (node) {
 		//end all remote connections
 		self.remotes.forEach(function (client) {
 			client.connection.end();
@@ -109,10 +111,10 @@ var dEventEmitter = module.exports = function (options) {
 			}
 		});
 		
-		self.emitLocal("self" + options.delimiter + "promoted");
+		self.emitLocal("self" + options.delimiter + "promoted", node);
 	});
 	
-	disc.on("demotion", function () {
+	disc.on("demotion", function (node) {
 		self.remotes.forEach(function (client) {
 			//end each client connection
 			client.connection.end();
@@ -121,7 +123,7 @@ var dEventEmitter = module.exports = function (options) {
 		//stop advertising the dnode server
 		disc.advertise(null);
 		
-		self.emitLocal("self" + options.delimiter + "demoted");
+		self.emitLocal("self" + options.delimiter + "demoted", node);
 	});
 	
 	disc.on("added", function (node) { 
@@ -166,6 +168,10 @@ var dEventEmitter = module.exports = function (options) {
 			self.emitLocal("connection" + options.delimiter + "ready");
 		});
 	});
+	
+// 	self.on("self" + options.delimiter + "advertise", function (obj) {
+// 		disc.advertise(obj);
+// 	});
 };
 
 util.inherits(dEventEmitter, EventEmitter);
@@ -179,7 +185,15 @@ dEventEmitter.prototype.emit = function (event, data, callback) {
 	}
 	
 	self.remotes.forEach(function (client) {
-		client.client.message(event, data);
+		//this is a hack for if the client does not have their functions loaded yet
+		if (!client.client.message) {
+			setTimeout(function () {
+				client.client.message(event, data);
+			},1000);
+		}
+		else {
+			client.client.message(event, data);
+		}
 	});
 	
 	//emit the event locally.
