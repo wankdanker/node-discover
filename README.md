@@ -3,7 +3,7 @@ node-discover
 
 Automatic and decentralized discovery and monitoring of nodejs instances with built in support for a variable number of master processes, service advertising and channel messaging.
 
-Version 0.0.5
+Version 0.0.6
 
 Probably has bugs.
 
@@ -278,7 +278,8 @@ Node Object
 		lastSeen: 1317323922551,
 		address: '10.0.0.1',
 		port: 12345,
-		id: '31d39c91d4dfd7cdaa56738de8240bc4' 
+		id: '31d39c91d4dfd7cdaa56738de8240bc4',
+		hostName : 'myMachine'
 	}
 
 TODO
