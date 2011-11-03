@@ -1,7 +1,9 @@
 node-discover
 =============
 
-Automatic and decentralized discovery and monitoring of nodejs instances with built in support for a variable number of master processes, service advertising and channel messaging.
+Automatic and decentralized discovery and monitoring of nodejs instances with 
+built in support for a variable number of master processes, service advertising
+and channel messaging.
 
 Version 0.0.6
 
@@ -11,10 +13,28 @@ Probably has bugs.
 Why?
 ====
 
-So, you have a whole bunch of node processes running but you have no way within each process to
-determine where the other processes are or what they can do. This module aims to make discovery of new
-processes as simple as possible. Additionally, what if you want one process to be in charge of a cluster
-of processes? This module also has automatic master process selection.
+So, you have a whole bunch of node processes running but you have no way within
+each process to determine where the other processes are or what they can do. 
+This module aims to make discovery of new processes as simple as possible. 
+Additionally, what if you want one process to be in charge of a cluster of 
+processes? This module also has automatic master process selection.
+
+Compatibility
+=============
+
+This module is compatible with the v0.4.x branch of node. On Linux 2.6.38+ (and 
+maybe lower) it is possible to have multiple processes on the same machine take
+part in the node-discover infrastructure.
+
+Currently, this module is NOT compatible with the 0.5.x and most likely 0.6.x 
+branches of node. This is due to unimplemented features and changes in behavior
+which have been made in favor of platform portability. I have reported the 
+[issue](https://github.com/joyent/node/issues/1993) to the node community and 
+will work with them to get this resolved. 
+
+Worst case we will only be able to run node-discover in a single master process
+on each machine. This won't be possible until all of the multicast features
+have landed back in core.
 
 
 Example
