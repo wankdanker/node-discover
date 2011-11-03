@@ -40,7 +40,9 @@ have landed back in core.
 Example
 =======
 
-Be sure to look in the examples folder, especially at the [distributed event emitter](https://github.com/wankdanker/node-discover/blob/master/examples/deventemitter.js)
+Be sure to look in the examples folder, especially at the [distributed event
+emitter](https://github.com/wankdanker/node-discover/blob/master/examples/
+deventemitter.js)
 
 
 	var Discover = require('node-discover');
@@ -52,10 +54,10 @@ Be sure to look in the examples folder, especially at the [distributed event emi
 		 * Launch things this master process should do.
 		 * 
 		 * For example:
-		 *	- Monitior your redis servers and handle failover by issuing slaveof commands then notify
-		 *	  other node instances to use the new master
-		 *	- Make sure there are a certain number of nodes in the cluster and launch new ones if there
-		 *	  are not enough
+		 *	- Monitior your redis servers and handle failover by issuing slaveof
+		 *    commands then notify other node instances to use the new master
+		 *	- Make sure there are a certain number of nodes in the cluster and 
+		 *    launch new ones if there are not enough
 		 *	- whatever
 		 * 
 		 */
@@ -305,7 +307,8 @@ Node Object
 TODO
 ====
 
-I have not tested large packets. The current version does not handle recombining split messages.
+I have not tested large packets. The current version does not handle recombining
+split messages.
 
 
 LICENSE
@@ -315,8 +318,19 @@ LICENSE
 
 Copyright (c) 2011 Dan VerWeire dverweire@gmail.com
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
