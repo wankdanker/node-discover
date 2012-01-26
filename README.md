@@ -22,19 +22,11 @@ processes? This module also has automatic master process selection.
 Compatibility
 =============
 
-This module is compatible with the v0.4.x branch of node. On Linux 2.6.38+ (and 
-maybe lower) it is possible to have multiple processes on the same machine take
-part in the node-discover infrastructure.
+This module uses broadcast and multicast features from node's dgram module. All 
+required features of the dgram module are implemented in the following versions of node
 
-Currently, this module is NOT compatible with the 0.5.x and most likely 0.6.x 
-branches of node. This is due to unimplemented features and changes in behavior
-which have been made in favor of platform portability. I have reported the 
-[issue](https://github.com/joyent/node/issues/1993) to the node community and 
-will work with them to get this resolved. 
-
-Worst case we will only be able to run node-discover in a single master process
-on each machine. This won't be possible until all of the multicast features
-have landed back in core.
+	- v0.4.x
+	- v0.6.9+
 
 
 Example
@@ -118,8 +110,10 @@ Constructor
 		nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
 		masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
 		address		: Address to bind to; Default: '0.0.0.0'
-		port		: Port to bind to and broadcast to: Default: 12345
-		destination	: Destination ip address; Default: '255.255.255.255'
+		port		: Port on which to bind and communicate with other node-discover processes; Default: 12345
+		broadcast	: Broadcast address if using broadcast; Default: '255.255.255.255'
+		multicast	: Multicast address if using multicast; Default: null (don't use multicast, use broadcast)
+		mulitcastTTL : Multicast TTL for when using multicast; Default: 1
 		key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
 		mastersRequired	: The count of master processes that should always be available,
 		weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Math.random()
