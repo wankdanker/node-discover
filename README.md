@@ -33,8 +33,7 @@ Example
 =======
 
 Be sure to look in the examples folder, especially at the [distributed event
-emitter](https://github.com/wankdanker/node-discover/blob/master/examples/
-deventemitter.js)
+emitter](https://github.com/wankdanker/node-discover/blob/master/examples/deventemitter.js)
 
 
 	var Discover = require('node-discover');
