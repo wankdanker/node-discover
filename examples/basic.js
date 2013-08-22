@@ -10,7 +10,7 @@
 
 var Discover = require("../");
 
-var d = new Discover();
+var d = new Discover({ key : process.argv[2] });
 
 d.on("added", function (obj) {
 	console.log("New node added to the network.");
@@ -20,4 +20,8 @@ d.on("added", function (obj) {
 d.on("removed", function (obj) {
 	console.log("Node removed from the network.");
 	console.log(obj);
+});
+
+d.on("error", function (err) {
+	console.log("error", err);
 });
