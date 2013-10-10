@@ -10,11 +10,13 @@
 
 var Discover = require("../");
 
-var d = new Discover({ key : process.argv[2] });
+var d = new Discover({ key : process.argv[2], weight : Date.now() * -1, mastersRequired : 2 });
+
+console.log('I am ' + d.broadcast.instanceUuid);
 
 d.on("added", function (obj) {
-	console.log("New node added to the network.");
-	console.log(obj);
+	console.log("New node discovered on the network.");
+	//console.log(obj);
 	prompt();
 });
 
@@ -29,8 +31,8 @@ d.on("demotion", function (obj) {
 });
 
 d.on("removed", function (obj) {
-	console.log("Node removed from the network.");
-	console.log(obj);
+	console.log("Node lost from the network.");
+	//console.log(obj);
 	prompt();
 });
 
@@ -38,6 +40,10 @@ d.on("error", function (err) {
 	console.log("error", err);
 	prompt();
 });
+
+// d.broadcast.on("hello", function (obj) {
+// 	console.log(obj);
+// });
 
 prompt()
 
@@ -57,6 +63,15 @@ process.stdin.on('data', function (chunk) {
 			break;
 		case 'demote true':
 			prompt('Demoting permanently');
+			d.demote(true);
+			break;
+		case 'list':
+			console.log(d.nodes);
+			prompt();
+			break;
+		case 'me':
+			console.log(d.me);
+			prompt();
 			break;
 		default: 
 			prompt();
