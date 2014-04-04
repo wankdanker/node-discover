@@ -5,11 +5,6 @@ Automatic and decentralized discovery and monitoring of nodejs instances with
 built in support for a variable number of master processes, service advertising
 and channel messaging.
 
-Version 0.0.7
-
-Probably has bugs.
-
-
 Why?
 ====
 
