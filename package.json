@@ -5,7 +5,7 @@
   "author": "Dan VerWeire",
   "homepage": "http://github.com/wankdanker/node-discover",
   "repository": "git://github.com/wankdanker/node-discover.git",
-  "main": "discover",
+  "main": "./lib/discover.js",
   "devDependencies": {
     "eventemitter2": "0.4.x",
     "optimist": "~0.6.0",
