@@ -33,7 +33,7 @@ emitter](https://github.com/wankdanker/node-discover/blob/master/examples/devent
 
 	var Discover = require('node-discover');
 
-	var d = new Discover();
+	var d = Discover();
 
 	d.on("promotion", function () {
 		/* 
@@ -98,20 +98,22 @@ API
 Constructor
 -----------
 
-	new Discover({
-		helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
-		checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
-		nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
-		masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
-		address		: Address to bind to; Default: '0.0.0.0'
-		port		: Port on which to bind and communicate with other node-discover processes; Default: 12345
-		broadcast	: Broadcast address if using broadcast; Default: '255.255.255.255'
-		multicast	: Multicast address if using multicast; Default: null (don't use multicast, use broadcast)
-		mulitcastTTL : Multicast TTL for when using multicast; Default: 1
-		key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
-		mastersRequired	: The count of master processes that should always be available,
-		weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Math.random()
-	});
+```js
+Discover({
+	helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
+	checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
+	nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
+	masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
+	address		: Address to bind to; Default: '0.0.0.0'
+	port		: Port on which to bind and communicate with other node-discover processes; Default: 12345
+	broadcast	: Broadcast address if using broadcast; Default: '255.255.255.255'
+	multicast	: Multicast address if using multicast; Default: null (don't use multicast, use broadcast)
+	mulitcastTTL	: Multicast TTL for when using multicast; Default: 1
+	key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
+	mastersRequired	: The count of master processes that should always be available,
+	weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Math.random()
+}, callback);
+```
 
 Attributes
 -----------
@@ -128,7 +130,7 @@ Promote the instance to master.
 This causes the old master to demote.
 	
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	d.promote();
 
@@ -139,7 +141,7 @@ node should not automatically become master again.
 This causes another node to become master
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	d.demote(); //this node is still eligible to become a master node.
 	
@@ -151,7 +153,7 @@ This causes another node to become master
 Join a channel on which to receive messages/objects
 	
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	//Pass the channel and the callback function for handling received data from that channel
 	var success = d.join("config-updates", function (data) {
@@ -176,7 +178,7 @@ Join a channel on which to receive messages/objects
 Leave a channel
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	//Pass the channel which we want to leave
 	var success = d.leave("config-updates");
@@ -189,7 +191,7 @@ Leave a channel
 Send a message/object on a specific channel
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	var success = d.send("config-updates", { redisMaster : "10.0.1.4" });
 	
@@ -198,12 +200,12 @@ Send a message/object on a specific channel
 	}
 
 ### advertise(objectToAdvertise)
-Advertise an object or message with each hello packet; this is completely arbitrary. make this
-object/message whatever you applies to your application that you want your nodes to know about the other
+Advertise an object or message with each hello packet; this is completely arbitrary. Make this
+object/message whatever applies to your application that you want your nodes to know about the other
 nodes.
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	d.advertise({
 		localServices : [
@@ -224,7 +226,7 @@ nodes.
 Start broadcasting hello packets and checking for missing nodes (start is called automatically in the constructor)
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	d.start();
 
@@ -232,7 +234,7 @@ Start broadcasting hello packets and checking for missing nodes (start is called
 Stop broadcasting hello packets and checking for missing nodes
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	d.stop();
 
@@ -240,7 +242,7 @@ Stop broadcasting hello packets and checking for missing nodes
 For each node execute fn, passing fn the node fn(node)
 
 	var Discover = require('node-discover');
-	var d = new Discover();
+	var d = Discover();
 	
 	d.eachNode(function (node) {
 		if (node.advertisement == "i love nodejs") {
