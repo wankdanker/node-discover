@@ -10,7 +10,7 @@
 
 var Discover = require("../");
 
-var d = new Discover({ key : process.argv[2] });
+var d = new Discover({ key : process.argv[2], port : 63532});
 
 d.on("added", function (obj) {
 	console.log("New node added to the network.");

@@ -1,6 +1,6 @@
 var Discover = require('../lib/discover.js');
 
-var c = Discover(function (err) {
+var c = Discover({ port : 61616 }, function (err) {
 	console.log('Constructor callback. ', err);
 });
 
