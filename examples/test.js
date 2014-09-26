@@ -1,6 +1,8 @@
 var Discover = require('../lib/discover.js');
 
-var c = new Discover();
+var c = Discover(function (err) {
+	console.log('Constructor callback. ', err);
+});
 
 c.on("promotion", function () {
 	console.log("I was promoted.");
