@@ -111,7 +111,8 @@ Discover({
 	mulitcastTTL	: Multicast TTL for when using multicast; Default: 1
 	key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
 	mastersRequired	: The count of master processes that should always be available,
-	weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Math.random()
+	weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Discover.weight()
+	client		: When true operate in client only mode (don't broadcast existence of node, just listen and discover); Default : false
 }, callback);
 ```
 
