@@ -7,10 +7,10 @@
   "repository": "git://github.com/wankdanker/node-discover.git",
   "main": "discover",
   "devDependencies": {
+    "dnode": "^1.2.0",
     "eventemitter2": "0.4.x",
     "optimist": "~0.6.0",
     "portfinder": "^0.4.0"
-    "dnode": "~1.0.5"
   },
   "engines": {
     "node": ">=0.4.1 <0.5.0 || >=0.6.9"
