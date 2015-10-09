@@ -10,7 +10,7 @@
 
 var Discover = require("../");
 
-var d1 = new Discover({ key : process.argv[2], ignoreProcess : false, weight : 11111 });
+var d1 = new Discover({ key : process.argv[2], ignoreProcess : false, ignoreInstance : false, weight : 11111 });
 
 d1.join('test', function (msg) {
 	console.log("d1 msg: ", msg);
@@ -34,7 +34,7 @@ setInterval(function () {
 	d1.send('test', 'hello from d1');
 }, 1000);
 
-var d2 = new Discover({ key : process.argv[2], ignoreProcess : false, weight : 22222 });
+var d2 = new Discover({ key : process.argv[2], ignoreProcess : false, ignoreInstance : false, weight : 22222 });
 
 d2.join('test', function (msg) {
 	console.log("d2 msg: ", msg);
