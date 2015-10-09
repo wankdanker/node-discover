@@ -12,6 +12,10 @@ var Discover = require("../");
 
 var d1 = new Discover({ key : process.argv[2], ignoreProcess : false, weight : 11111 });
 
+d1.join('test', function (msg) {
+	console.log("d1 msg: ", msg);
+});
+
 d1.on("added", function (obj) {
 	console.log("d1: New node added to the network.");
 	console.log(obj);
@@ -26,7 +30,15 @@ d1.on("error", function (err) {
 	console.log("d1: error", err);
 });
 
+setInterval(function () {
+	d1.send('test', 'hello from d1');
+}, 1000);
+
 var d2 = new Discover({ key : process.argv[2], ignoreProcess : false, weight : 22222 });
+
+d2.join('test', function (msg) {
+	console.log("d2 msg: ", msg);
+});
 
 d2.on("added", function (obj) {
 	console.log("d2: New node added to the network.");
@@ -41,3 +53,7 @@ d2.on("removed", function (obj) {
 d2.on("error", function (err) {
 	console.log("d2: error", err);
 });
+
+setInterval(function () {
+	d2.send('test', 'hello from d2');
+}, 1000);
