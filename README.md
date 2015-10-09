@@ -1,5 +1,6 @@
 node-discover
 =============
+[![npm version](https://badge.fury.io/js/node-discover.svg)](https://www.npmjs.com/package/node-discover)
 
 Automatic and decentralized discovery and monitoring of nodejs instances with 
 built in support for a variable number of master processes, service advertising
