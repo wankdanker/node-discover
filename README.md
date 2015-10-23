@@ -115,6 +115,7 @@ Discover({
 	broadcast	: Broadcast address if using broadcast; Default: '255.255.255.255'
 	multicast	: Multicast address if using multicast; Default: null (don't use multicast, use broadcast)
 	mulitcastTTL	: Multicast TTL for when using multicast; Default: 1
+	unicast		: Comma separated String or Array of Unicast addresses of known nodes
 	key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
 	mastersRequired	: The count of master processes that should always be available,
 	weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Discover.weight()
