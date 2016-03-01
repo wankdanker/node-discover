@@ -121,8 +121,9 @@ Discover({
 	weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Discover.weight()
 	client		: When true operate in client only mode (don't broadcast existence of node, just listen and discover); Default : false
 	reuseAddr	: Allow multiple processes on the same host to bind to the same address and port. Only applies to node v0.12+ Default: true
-	ignoreProcess : If set to false, will not ignore messages from other Discover instances within the same process (on non-reserved channels), join() will receive them. Default: true
-	ignoreInstance : If set to false, will not ignore messages from self (on non-reserved channels), join() will receive them. Default: true
+	ignoreProcess   : If set to false, will not ignore messages from other Discover instances within the same process (on non-reserved channels), join() will receive them. Default: true
+	ignoreInstance  : If set to false, will not ignore messages from self (on non-reserved channels), join() will receive them. Default: true
+	advertisement   : The initial advertisement object which is sent with each hello packet.
 }, callback);
 ```
 
