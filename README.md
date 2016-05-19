@@ -307,6 +307,12 @@ Triggered when a new node is not heard from within `nodeTimeout`
 ### master 
 Triggered when a new master has been selected
 
+### helloReceived
+Triggered when the node has received a hello from given one
+
+### helloEmitted
+Triggered when the node sends a hello packet
+
 
 Node Object
 -----------
