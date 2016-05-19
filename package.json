@@ -1,7 +1,7 @@
 {
   "name": "node-discover",
   "description": "Automatically discover your nodejs instances with built-in support for automatic single master and capability advertising.",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": "Dan VerWeire",
   "homepage": "http://github.com/wankdanker/node-discover",
   "repository": "git://github.com/wankdanker/node-discover.git",
