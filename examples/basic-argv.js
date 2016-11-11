@@ -16,6 +16,11 @@ delete argv.$0;
 
 var d = new Discover(argv);
 
+console.log('d.me:' , d.me);
+console.log('instanceUuid', d.broadcast.instanceUuid);
+console.log('processUuid', d.broadcast.processUuid);
+d.advertise({ testing : Math.random() });
+
 d.on("added", function (obj) {
 	console.log("New node added to the network.");
 	console.log(obj);
@@ -29,3 +34,5 @@ d.on("removed", function (obj) {
 d.on("error", function (err) {
 	console.log("error", err);
 });
+
+module.exports = d;

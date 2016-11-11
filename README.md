@@ -105,7 +105,7 @@ Constructor
 -----------
 
 ```js
-Discover(opts)
+Discover(opts, callback)
 ```
 * opts - object
 	* **helloInterval** : How often to broadcast a hello packet in milliseconds
