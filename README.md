@@ -105,27 +105,47 @@ Constructor
 -----------
 
 ```js
-Discover({
-	helloInterval	: How often to broadcast a hello packet in milliseconds; Default: 1000
-	checkInterval	: How often to to check for missing nodes in milliseconds; Default: 2000
-	nodeTimeout	: Consider a node dead if not seen in this many milliseconds; Default: 2000
-	masterTimeout	: Consider a master node dead if not seen in this many milliseconds; Default: 2000
-	address		: Address to bind to; Default: '0.0.0.0'
-	port		: Port on which to bind and communicate with other node-discover processes; Default: 12345
-	broadcast	: Broadcast address if using broadcast; Default: '255.255.255.255'
-	multicast	: Multicast address if using multicast; Default: null (don't use multicast, use broadcast)
-	mulitcastTTL	: Multicast TTL for when using multicast; Default: 1
-	unicast		: Comma separated String or Array of Unicast addresses of known nodes. It is advised to specify the `address` of the local interface when using unicast and expecting local discovery to work
-	key		: Encryption key if your broadcast packets should be encrypted; Default: null (that means no encryption);
-	mastersRequired	: The count of master processes that should always be available,
-	weight		: A number used to determine the preference for a specific process to become master. Higher numbers win. Default : Discover.weight()
-	client		: When true operate in client only mode (don't broadcast existence of node, just listen and discover); Default : false
-	reuseAddr	: Allow multiple processes on the same host to bind to the same address and port. Only applies to node v0.12+ Default: true
-	ignoreProcess   : If set to false, will not ignore messages from other Discover instances within the same process (on non-reserved channels), join() will receive them. Default: true
-	ignoreInstance  : If set to false, will not ignore messages from self (on non-reserved channels), join() will receive them. Default: true
-	advertisement   : The initial advertisement object which is sent with each hello packet.
-}, callback);
+Discover(opts)
 ```
+* opts - object
+	* **helloInterval** : How often to broadcast a hello packet in milliseconds
+		* Default: 1000
+	* **checkInterval** : How often to to check for missing nodes in milliseconds
+		* Default: 2000
+	* **nodeTimeout** : Consider a node dead if not seen in this many milliseconds
+		* Default: 2000
+	* **masterTimeout** : Consider a master node dead if not seen in this many milliseconds
+		* Default: 2000
+	* **address** : Address to bind to
+		* Default: '0.0.0.0'
+	* **port** : Port on which to bind and communicate with other node-discover processes
+		* Default: 12345
+	* **broadcast**	: Broadcast address if using broadcast
+		* Default: '255.255.255.255'
+	* **multicast**	: Multicast address if using multicast
+		* Default: null (don't use multicast, use broadcast)
+	* **mulitcastTTL** : Multicast TTL for when using multicast
+		* Default: 1
+	* **unicast** : Comma separated String or Array of Unicast addresses of known nodes
+		* It is advised to specify the `address` of the local interface when using unicast and expecting local discovery to work
+	* **key** : Encryption key if your broadcast packets should be encrypted
+		* Default: null (that means no encryption)
+	* **mastersRequired**	: The count of master processes that should always be available
+	* **weight** : A number used to determine the preference for a specific process to become master
+		* Default : Discover.weight()
+		* Higher numbers win.
+	* **client** : When true operate in client only mode (don't broadcast existence of node, just listen and discover)
+		* Default : false
+	* **reuseAddr**	: Allow multiple processes on the same host to bind to the same address and port.
+		* Default: true
+		* Only applies to node v0.12+
+	* **ignoreProcess** : If set to false, will not ignore messages from other Discover instances within the same process (on non-reserved channels), join() will receive them.
+		* Default: true
+	* **ignoreInstance** : If set to false, will not ignore messages from self (on non-reserved channels), join() will receive them.
+		* Default: true
+	* **advertisement** : The initial advertisement object which is sent with each hello packet.
+* callback - function that is called when everything is up and running
+	* signature : callback(err, success)
 
 Attributes
 -----------
