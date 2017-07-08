@@ -1,5 +1,5 @@
 {
-  "name": "node-discover",
+  "name": "@dashersw/node-discover",
   "description": "Automatically discover your nodejs instances with built-in support for automatic single master and capability advertising.",
   "version": "0.6.2",
   "author": "Dan VerWeire",
