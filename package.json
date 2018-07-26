@@ -4,7 +4,10 @@
   "version": "0.6.2",
   "author": "Dan VerWeire",
   "homepage": "http://github.com/wankdanker/node-discover",
-  "repository": "git://github.com/wankdanker/node-discover.git",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wankdanker/node-discover.git"
+  },
   "main": "discover",
   "devDependencies": {
     "dnode": "^1.2.0",
@@ -17,5 +20,25 @@
   },
   "dependencies": {
     "uuid": "^3.3.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/wankdanker/node-discover/issues"
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "autodiscover",
+    "cluster",
+    "discovery",
+    "udp",
+    "datagram",
+    "split",
+    "brain"
+  ],
+  "license": "MIT"
 }
