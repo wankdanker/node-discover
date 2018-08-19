@@ -144,6 +144,8 @@ Discover(opts, callback)
 	* **ignoreInstance** : If set to false, will not ignore messages from self (on non-reserved channels), join() will receive them.
 		* Default: true
 	* **advertisement** : The initial advertisement object which is sent with each hello packet.
+	* **hostname** : Override the OS hostname with a custom value.
+		* Default: null (use DISCOVERY_HOSTNAME env var or the OS hostname)
 * callback - function that is called when everything is up and running
 	* signature : callback(err, success)
 
