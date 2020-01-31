@@ -10,7 +10,11 @@
 
 var Discover = require("../");
 
-var d = new Discover({ key : process.argv[2], weight : Date.now() * -1, mastersRequired : 2 });
+var d = new Discover({ 
+	key : process.argv[2], weight : Date.now() * -1
+	, mastersRequired : 2
+	//, leadershipElector : Discover.NoLeadershipElection
+});
 
 console.log('I am ' + d.broadcast.instanceUuid);
 
