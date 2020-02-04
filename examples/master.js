@@ -19,23 +19,23 @@ var d = new Discover({
 console.log('I am ' + d.broadcast.instanceUuid);
 
 d.on("added", function (obj) {
-	console.log("New node discovered on the network.");
+	process.stdout.write("\nNew node discovered on the network.");
 	//console.log(obj);
 	prompt();
 });
 
 d.on("promotion", function (obj) {
-	console.log("I was promoted");
+	process.stdout.write("\nI was promoted");
 	prompt();
 });
 
 d.on("demotion", function (obj) {
-	console.log('I was demoted');
+	process.stdout.write("\nI was demoted");
 	prompt();
 });
 
 d.on("removed", function (obj) {
-	console.log("Node lost from the network.");
+	process.stdout.write("\nNode lost from the network.");
 	//console.log(obj);
 	prompt();
 });
@@ -48,6 +48,10 @@ d.on("error", function (err) {
 // d.broadcast.on("hello", function (obj) {
 // 	console.log(obj);
 // });
+console.log('')
+console.log('************************************************');
+console.log('commands: promote, demote, demote true, list, me');
+console.log('************************************************');
 
 prompt()
 
