@@ -19,7 +19,7 @@
     "node": ">=0.4.1 <0.5.0 || >=0.6.9"
   },
   "dependencies": {
-    "uuid": "^3.3.2"
+    "uuid": "^8.3.1"
   },
   "bugs": {
     "url": "https://github.com/wankdanker/node-discover/issues"
