@@ -40,5 +40,6 @@
     "split",
     "brain"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "types": "./index.d.ts"
 }
