@@ -44,7 +44,10 @@ d.on("added", node => {
 			, port : node.port
 		});
 
-		d.send('unicast-nodes', node);
+		//send all nodes that we know about to the network.
+		d.broadcast.destination.forEach(node => {
+			d.send('unicast-nodes', node);
+		});
 	}
 });
 
@@ -77,3 +80,7 @@ d.join('unicast-nodes', node => {
 d.on("error", err => {
 	console.log("error", err);
 });
+
+d.on('promotion', function () {
+	console.log('promoted');
+})
