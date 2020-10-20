@@ -2,7 +2,7 @@ declare module 'node-discover' {
   import { EventEmitter } from 'events';
   import { RemoteInfo } from 'dgram';
 
-  type Options = {
+  export type Options = {
     helloInterval?: number;
     checkInterval?: number;
     nodeTimeout?: number;
@@ -26,7 +26,7 @@ declare module 'node-discover' {
     hostname?: string;
   };
 
-  type Message<T = unknown> = {
+  export type Message<T = unknown> = {
     event: string;
     pid: string;
     iid: string;
@@ -34,7 +34,7 @@ declare module 'node-discover' {
     data?: T;
   };
 
-  type Node<A = unknown> = {
+  export type Node<A = unknown> = {
     isMaster: boolean;
     isMasterEligible: boolean;
     weight: number;
@@ -46,7 +46,7 @@ declare module 'node-discover' {
     advertisement?: A;
   };
 
-  type ThisNode<A = unknown> = {
+  export type ThisNode<A = unknown> = {
     isMaster: boolean;
     isMasterEligible: boolean;
     weight: number;
@@ -54,10 +54,16 @@ declare module 'node-discover' {
     advertisement?: A;
   };
 
-  type ChannelListener<D> = (data: D, obj: Message<D>, rinfo: RemoteInfo) => void;
+  export type ChannelListener<D> = (data: D, obj: Message<D>, rinfo: RemoteInfo) => void;
 
-  class Discover<A = any, C extends Record<string, any> = Record<string, any>> extends EventEmitter {
+  export type Network = {
+    instanceUuid: string;
+  };
+
+  export default class Discover<A = any, C extends Record<string, any> = Record<string, any>> extends EventEmitter {
     nodes: Record<string, Node>;
+    me: ThisNode<A>;
+    broadcast: Network;
     constructor(callback?: (error: Error, something: boolean) => void);
     constructor(options?: Options, callback?: (error: Error, success: boolean) => void);
 
@@ -85,6 +91,4 @@ declare module 'node-discover' {
     on(channel: 'hello', listener: ChannelListener<A>): this;
     on<T extends keyof C>(channel: T, listener: ChannelListener<C[T]>): this;
   }
-
-  export = Discover;
 }
