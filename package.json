@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git://github.com/wankdanker/node-discover.git"
   },
-  "main": "discover",
+  "main": "index.js",
   "devDependencies": {
     "dnode": "^1.2.0",
     "eventemitter2": "0.4.x",
