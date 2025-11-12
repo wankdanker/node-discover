@@ -8,15 +8,27 @@
     "type": "git",
     "url": "git://github.com/wankdanker/node-discover.git"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "lib/*.ts",
+    "index.ts"
+  ],
   "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/uuid": "^10.0.0",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
     "dnode": "^1.2.0",
     "eventemitter2": "0.4.x",
     "optimist": "~0.6.0",
-    "portfinder": "^0.4.0"
+    "portfinder": "^0.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
   },
   "engines": {
-    "node": ">=0.4.1 <0.5.0 || >=0.6.9"
+    "node": ">=20.0.0"
   },
   "dependencies": {
     "uuid": "^8.3.1"
@@ -29,7 +41,12 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "npm run build && vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "npm run build && vitest run --coverage"
   },
   "keywords": [
     "autodiscover",

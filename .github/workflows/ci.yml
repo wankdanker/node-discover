@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    name: Test on Node.js ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['20.x', '22.x']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build TypeScript
+      run: npm run build
+
+    - name: Run tests
+      run: npm test
+
+    - name: Generate coverage report
+      if: matrix.node-version == '22.x'
+      run: npm run test:coverage
+
+    - name: Upload coverage to Codecov
+      if: matrix.node-version == '22.x'
+      uses: codecov/codecov-action@v4
+      with:
+        files: ./coverage/coverage-final.json
+        fail_ci_if_error: false
+        verbose: true
+
+  lint:
+    name: TypeScript Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Check TypeScript compilation
+      run: npx tsc --noEmit
