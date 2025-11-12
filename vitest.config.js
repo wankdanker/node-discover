@@ -5,7 +5,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['lib/**/*.js', 'index.js'],
+      include: ['dist/lib/**/*.js', 'dist/index.js'],
       exclude: ['examples/**', 'test/**', '**/*.test.js', '**/*.spec.js'],
       all: true,
       lines: 80,

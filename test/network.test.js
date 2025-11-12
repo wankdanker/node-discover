@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import Network from '../lib/network.js';
+import Network from '../dist/lib/network.js';
 import dgram from 'dgram';
 
 describe('Network', () => {

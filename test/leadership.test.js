@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import leadership, { BasicLeadershipElection, NoLeadershipElection } from '../lib/leadership.js';
+import leadership, { BasicLeadershipElection, NoLeadershipElection } from '../dist/lib/leadership.js';
 import { EventEmitter } from 'events';
 
 describe('Leadership', () => {

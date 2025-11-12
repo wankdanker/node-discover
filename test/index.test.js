@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import Discover from '../index.js';
+import Discover from '../dist/index.js';
 
 describe('Index', () => {
   it('should export Discover module', () => {
